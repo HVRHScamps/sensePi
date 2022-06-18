@@ -13,7 +13,8 @@ while True:
         clock = time.time()
     orientation = hat.get_orientation_degrees()
     for axis in ["pitch", "roll", "yaw"]:
-        table.putNumber(axis, orientation[axis])
+        # weird format to comply with libhousy (updating it on each laptop would be a pain)
+        table.putNumber("sh"+axis.title(), orientation[axis])
     acceleration = hat.get_accelerometer_raw()
-    table.putNumberArray("acceleration", [acceleration["x"], acceleration["y"], acceleration["z"]])
+    table.putNumberArray("shAccel", [acceleration["x"], acceleration["y"], acceleration["z"]])
     time.sleep(0.02)
